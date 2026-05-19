@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  back-end:
+    build: ./back-end
+    ports:
+      - "5252"
+
+  front-end:
+    build: ./front-end
+    ports:
+      - "9000"
+
+  proxy:
+    build: ./proxy
+    ports:
+      - "8090:80"
+    container_name: proxy
+    depends_on:
+      - back-end
+      - front-end
